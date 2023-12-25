@@ -1,0 +1,7 @@
+.git*
+.idea*
+.terraform*
+terraform
+local.settings.json
+test
+.venv
