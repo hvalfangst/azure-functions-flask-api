@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "edde8ba3-fc1a-43ca-9534-9ff5ec08969e",
+		"name": "Hvalfangst Azure Function Crypto API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29899311"
+	},
+	"item": [
+		{
+			"name": "Index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://hvalfangstlinuxfunctionapp.azurewebsites.net/index",
+					"protocol": "https",
+					"host": [
+						"hvalfangstlinuxfunctionapp",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"index"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Encrypt",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"plain_text\": \"Goofy on Acid\",\r\n    \"encryption_key\": \"ballyr\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hvalfangstlinuxfunctionapp.azurewebsites.net/encrypt",
+					"protocol": "https",
+					"host": [
+						"hvalfangstlinuxfunctionapp",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"encrypt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decrypt",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"encrypted_text\": \"f=\",\r\n    \"encryption_key\": \"ballyr\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hvalfangstlinuxfunctionapp.azurewebsites.net/decrypt",
+					"protocol": "https",
+					"host": [
+						"hvalfangstlinuxfunctionapp",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"decrypt"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

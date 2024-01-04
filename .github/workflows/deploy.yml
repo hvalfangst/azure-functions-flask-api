@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Python version
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
@@ -31,7 +31,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip host.json requirements.txt wsgi_middleware/*  flask_api/*
+        run: zip -r release.zip host.json requirements.txt function_app.py crypto_utils/*
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
