@@ -50,15 +50,11 @@ resource "azurerm_linux_function_app" "hvalfangst" {
   site_config {
     application_insights_key = azurerm_application_insights.hvalfangst.instrumentation_key
     application_insights_connection_string = azurerm_application_insights.hvalfangst.connection_string
-    cors {
-      allowed_origins = ["https://portal.azure.com"]
-    }
     application_stack{
       python_version = "3.10"
     }
   }
   app_settings = {
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.hvalfangst.instrumentation_key
-    "FUNCTIONS_EXTENSION_VERSION" = "~3"
   }
 }
