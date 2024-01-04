@@ -32,7 +32,15 @@ resource "azurerm_service_plan" "hvalfangst" {
   sku_name = "Y1"
 }
 
-resource "azurerm_linux_function_app" "example" {
+resource "azurerm_application_insights" "hvalfangst" {
+  name                = "hvalfangstapplicationinsights"
+  resource_group_name = azurerm_resource_group.hvalfangst.name
+  location            = azurerm_resource_group.hvalfangst.location
+  application_type    = "other"
+}
+
+
+resource "azurerm_linux_function_app" "hvalfangst" {
   name                = "hvalfangstlinuxfunctionapp"
   resource_group_name = azurerm_resource_group.hvalfangst.name
   location            = azurerm_resource_group.hvalfangst.location
@@ -40,8 +48,17 @@ resource "azurerm_linux_function_app" "example" {
   storage_account_access_key = azurerm_storage_account.hvalfangst.primary_access_key
   service_plan_id            = azurerm_service_plan.hvalfangst.id
   site_config {
+    application_insights_key = azurerm_application_insights.hvalfangst.instrumentation_key
+    application_insights_connection_string = azurerm_application_insights.hvalfangst.connection_string
+    cors {
+      allowed_origins = ["https://portal.azure.com"]
+    }
     application_stack{
       python_version = "3.10"
     }
+  }
+  app_settings = {
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.hvalfangst.instrumentation_key
+    "FUNCTIONS_EXTENSION_VERSION" = "~3"
   }
 }

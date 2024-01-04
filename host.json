@@ -3,6 +3,14 @@
   "extensions": {
     "http": {
       "routePrefix": ""
+    },
+    "logging": {
+      "applicationInsights": {
+        "samplingSettings": {
+          "isEnabled": true,
+          "excludedTypes": "Request"
+        }
+      }
     }
   }
 }
